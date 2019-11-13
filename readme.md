@@ -13,7 +13,7 @@
 ## Usage
 
 ```js
-const jaymock = require('jaymock')
+const jaymock = require('@unmock/jaymock')
 
 const data = {
   firstName: 'name.firstName',
@@ -68,7 +68,7 @@ const fakeData = jm.populate(data)
 ### Mock API using [express](https://github.com/expressjs/express)
 
 ```js
-const jaymock = require('jaymock')
+const jaymock = require('@unmock/jaymock')
 const express = require('express')
 
 app = express()
