@@ -22,5 +22,11 @@
   },
   "devDependencies": {
     "ava": "^2.4.0"
-  }
+  },
+  "keywords": [
+    "mock",
+    "json",
+    "fake",
+    "data"
+  ]
 }
