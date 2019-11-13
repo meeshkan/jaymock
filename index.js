@@ -136,6 +136,14 @@ const populateObject = (object, funcObject, firstRun = true) => {
     return object
 }
 
+const jaymock = () => new JayMock()
+
+/**
+ * Expose `jaymock`.
+ */
+
+module.exports = jaymock
+
 /**
  * Initializes `JayMock`.
  *
