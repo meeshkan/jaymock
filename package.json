@@ -1,0 +1,19 @@
+{
+  "name": "@unmock/jaymock",
+  "version": "1.0.0",
+  "description": "Minimal fake JSON test data generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unmock/jaymock.git"
+  },
+  "author": "unmock",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/unmock/jaymock/issues"
+  },
+  "homepage": "https://github.com/unmock/jaymock#readme"
+}
