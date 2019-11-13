@@ -119,3 +119,13 @@ Adds custom data generation functions that can be called in the `.populate` `tem
 Type: `object`
 
 Each object `key` should be the relevant function's name and `value` the function's body (e.g. `{ 'chance', new require('chance')() }`).
+
+### .setFakerLocale(locale)
+
+Sets [`Faker.js`'s language locale](https://github.com/Marak/Faker.js/#localization).
+
+#### locale
+
+Type: `string`
+
+Any of [`Faker.js`'s locale options](https://github.com/Marak/Faker.js/#localization).
