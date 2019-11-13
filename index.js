@@ -135,3 +135,15 @@ const populateObject = (object, funcObject, firstRun = true) => {
     }
     return object
 }
+
+/**
+ * Initializes `JayMock`.
+ *
+ * @method jaymock
+ * @api public
+ */
+
+function JayMock() {
+    this.template = {}
+    this.functions = {}
+}
