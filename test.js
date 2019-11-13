@@ -166,3 +166,11 @@ test('invalid function', t => {
     }, Error);
 	t.is(error.message, `Faker function ${JSON.stringify(data.invalid)} does not exist`);
 })
+
+test('faker locale', t => {
+    const data = fixtures.fakerLocale
+    const jm = jaymock()
+    jm.setFakerLocale('ru')
+    const obj = jm.populate(data)
+    t.true(/[\w\u0430-\u044f]+/.test(obj[Object.keys(obj)[0]]))
+})
