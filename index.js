@@ -15,3 +15,19 @@ const isType = (value, type) => typeof value === type
 const isObject = value => isType(value, 'object')
 const generateArrayOfLength = length => [...Array(length)]
 const isObjectKey = (key, object) => Object.keys(object).includes(key)
+
+/**
+ * Returns Faker.js generated data.
+ *
+ * @param {String} topic
+ * @param {String} subtopic
+ * @returns {String|Number|Object} Fake Data
+ * @api private
+ */
+
+const generateFakerData = (topic, subtopic) => {
+    if (topic === 'fake') {
+        return faker[topic](subtopic.slice(1, -1))
+    }
+    return faker[topic][subtopic]()
+}
