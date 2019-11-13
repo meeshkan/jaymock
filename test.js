@@ -136,3 +136,16 @@ test('custom data generation function', t => {
     t.deepEqual(expectedKeys, actualKeys)
     t.true(hexColorRegex.test(obj.color))
 })
+
+test('{custom function}|{desired array length}', t => {
+    const data = fixtures.customArrayFunction
+    const expectedKeys = Object.keys(data)
+    const jm = jaymock()
+    jm.extend('hexColor', () => randomHexColor())
+    const obj = jm.populate(data)
+    const actualKeys = Object.keys(obj)
+    t.deepEqual(expectedKeys, actualKeys)
+    const actualArray = obj['color']
+    t.true(Array.isArray(actualArray) && actualArray.length === parseInt(data.color.split('|')[1]))
+    actualArray.forEach(value => t.true(hexColorRegex.test(value)))
+})
