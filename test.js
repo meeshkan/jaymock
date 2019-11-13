@@ -123,3 +123,16 @@ test('{faker function}|{desired array length}', t => {
     t.true(Array.isArray(actualArray) && actualArray.length === parseInt(data.ipAddress.split('|')[1]))
     actualArray.forEach(value => t.true(ipAddressRegex.test(value)))
 })
+
+const randomHexColor = () => '#' + ('000000' + Math.floor(Math.random()*16777215).toString(16)).slice(-6)
+const hexColorRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
+test('custom data generation function', t => {
+    const data = fixtures.customFunction
+    const expectedKeys = Object.keys(data)
+    const jm = jaymock()
+    jm.extend('hexColor', () => randomHexColor())
+    const obj = jm.populate(data)
+    const actualKeys = Object.keys(obj)
+    t.deepEqual(expectedKeys, actualKeys)
+    t.true(hexColorRegex.test(obj.color))
+})
