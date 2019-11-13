@@ -137,3 +137,7 @@ Sets [`Faker.js`'s randomness seed](https://github.com/Marak/Faker.js/#setting-a
 #### seed
 
 Type: `number`
+
+## License
+
+MIT © [Meeshkan](http://meeshkan.com/)
