@@ -78,3 +78,16 @@ test('nested object', t => {
         t.true(obj[key] != undefined && (obj[key].length > 0 || typeof obj[key] === 'object'))
     })
 })
+
+test('repeat mother object', t => {
+    const data = fixtures.repeat
+    const expectedKeys = Object.keys(data).filter(x => x != '_repeat')
+    const objects = jaymock().populate(data)
+    objects.forEach(obj => {
+        const actualKeys = Object.keys(obj)
+        t.deepEqual(expectedKeys, actualKeys)
+        actualKeys.forEach(key => {
+            t.true(obj[key] != undefined && obj[key].length > 0)
+        })
+    })
+})
