@@ -97,3 +97,25 @@ Each object's value can be one of [`Faker.js`'s API methods](https://github.com/
 A fake value can be generated `n` times, into an array of `n` values, by including `|n` at the end of the individual object's method name (e.g. `'name.firstName|5'` will generate an array, populated with `5` fake first names). This also works with custom functions, accordingly.
 
 To use the [`faker.fake()`](https://github.com/marak/Faker.js/#fakerfake) method (which permits the combination of faker API methods), use the format `'fake({mustache_strings})'` (e.g. `'fake({{name.lastName}}, {{name.firstName}} {{name.suffix}})'`).
+
+### .extend(name, body)
+
+Adds a custom data generation function that can be called in the `.populate` `template` using the value of `name`.
+
+#### name
+
+Type: `string`
+
+#### body
+
+Type: `function`
+
+### .extend(functions)
+
+Adds custom data generation functions that can be called in the `.populate` `template` using the value of each object ke.
+
+#### functions
+
+Type: `object`
+
+Each object `key` should be the relevant function's name and `value` the function's body (e.g. `{ 'chance', new require('chance')() }`).
