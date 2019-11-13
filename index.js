@@ -92,3 +92,46 @@ const fake = (payload, customFunctions) => {
     }
     return generateFakerData(topic, subtopic)
 }
+
+/**
+ * Populates the template object with fake data.
+ *
+ * @param {String} object
+ * @param {String} funcObject
+ * @param {Boolean} firstRun
+ * @returns {Object} Populated Object
+ * @api private
+ */
+
+const populateObject = (object, funcObject, firstRun = true) => {
+    object = cloneDeep(object)
+    const repeatParentObject = firstRun && isObjectKey('_repeat', object) && object['_repeat'] !== undefined
+    for (let [key, value] of Object.entries(object)) {
+        if (repeatParentObject) {
+            value = object
+        }
+        if (isObject(value)) {
+            if (value['_repeat'] !== undefined) {
+                const repeatCount = value['_repeat']
+                delete value['_repeat']
+                if (repeatParentObject) {
+                    const temp = object
+                    object = []
+                    for (let j = 0; j < repeatCount; j++) {
+                        object.push(populateObject(temp, funcObject, false))
+                    }
+                    return object
+                }
+                object[key] = []
+                for (let j = 0; j < repeatCount; j++) {
+                    object[key].push(populateObject(value, funcObject, false))
+                }
+            } else {
+                object[key] = populateObject(value, funcObject, false)
+            }
+        } else {
+            object[key] = fake(value, funcObject)
+        }
+    }
+    return object
+}
