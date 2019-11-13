@@ -91,3 +91,23 @@ test('repeat mother object', t => {
         })
     })
 })
+
+test('repeat nested object', t => {
+    const data = fixtures.repeatNested
+    const obj = jaymock().populate(data)
+    Object.keys(obj).forEach(key => {
+        const value = obj[key]
+        t.true(value != undefined && value.length > 0)
+        if (key === 'ipAddress') {
+            t.true(Array.isArray(value))
+            value.forEach(innerObj => {
+                const expectedKeys = Object.keys(data.ipAddress).filter(x => x != '_repeat')
+                const actualKeys = Object.keys(innerObj)
+                t.deepEqual(expectedKeys, actualKeys)
+                actualKeys.forEach(innerKey => {
+                    t.true(innerObj[innerKey] != undefined && innerObj[innerKey].length > 0)
+                })
+            })
+        }
+    })
+})
