@@ -186,3 +186,15 @@ JayMock.prototype.extend = function(funcName, funcBody = null) {
         this.functions[funcName] = funcBody
     }
 }
+
+/**
+ * Sets `Faker.js`'s language locale.
+ *
+ * @method jaymock.setFakerLocale
+ * @param {String} locale
+ * @api public
+ */
+
+JayMock.prototype.setFakerLocale = function(locale) {
+    faker.locale = locale
+}
