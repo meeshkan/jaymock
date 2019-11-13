@@ -129,3 +129,11 @@ Sets [`Faker.js`'s language locale](https://github.com/Marak/Faker.js/#localizat
 Type: `string`
 
 Any of [`Faker.js`'s locale options](https://github.com/Marak/Faker.js/#localization).
+
+### .setFakerSeed(seed)
+
+Sets [`Faker.js`'s randomness seed](https://github.com/Marak/Faker.js/#setting-a-randomness-seed).
+
+#### seed
+
+Type: `number`
