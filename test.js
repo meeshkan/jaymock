@@ -56,3 +56,14 @@ const fixtures = {
         number: 'random.number'
     }
 }
+
+test('flat object', t => {
+    const data = fixtures.flat
+    const expectedKeys = Object.keys(data)
+    const obj = jaymock().populate(data)
+    const actualKeys = Object.keys(obj)
+    t.deepEqual(expectedKeys, actualKeys)
+    actualKeys.forEach(key => {
+        t.true(obj[key] != undefined && obj[key].length > 0)
+    })
+})
