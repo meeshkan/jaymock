@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/unmock/jaymock/issues"
   },
-  "homepage": "https://github.com/unmock/jaymock#readme"
+  "homepage": "https://github.com/unmock/jaymock#readme",
+  "dependencies": {
+    "faker": "^4.1.0",
+    "lodash.clonedeep": "^4.5.0"
+  }
 }
