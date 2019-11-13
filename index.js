@@ -50,3 +50,45 @@ const parsePayload = payload => {
     }
     return [topic, subtopic]
 }
+
+/**
+ * Returns the appropriate fake data 
+ * (generated using either Faker.js or custom functions).
+ *
+ * @param {String} payload
+ * @param {Object} customFunctions
+ * @returns {String|Number|Object} Fake Data
+ * @api private
+ */
+
+const fake = (payload, customFunctions) => {
+    let numOfValues = null
+    let [topic, subtopic] = parsePayload(payload)
+    if (subtopic && subtopic.includes('|')) {
+        [subtopic, numOfValues] = subtopic.split('|')
+        numOfValues = parseInt(numOfValues)
+    } else if (!subtopic && topic && topic.includes('|')) {
+        [topic, numOfValues] = topic.split('|')
+        numOfValues = parseInt(numOfValues)
+    }
+    if (isObjectKey(topic, customFunctions)) {
+        let func = customFunctions[topic]
+        if (numOfValues) {
+            if (func[subtopic] !== undefined) {
+                return generateArrayOfLength(numOfValues).map(_ => func[subtopic]())
+            }
+            return generateArrayOfLength(numOfValues).map(_ => func())
+        }
+        if (func[subtopic]) {
+            return func[subtopic]()
+        }
+        return func()
+    }
+    if ((faker[topic] === undefined || faker[topic][subtopic] === undefined) && !subtopic.includes('.') && !subtopic.includes('|')) {
+        throw new Error(`Faker function ${JSON.stringify(topic + '.' + subtopic)} does not exist`)
+    }
+    if (numOfValues) {
+        return generateArrayOfLength(numOfValues).map(_ => generateFakerData(topic, subtopic))
+    }
+    return generateFakerData(topic, subtopic)
+}
