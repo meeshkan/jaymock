@@ -174,3 +174,11 @@ test('faker locale', t => {
     const obj = jm.populate(data)
     t.true(/[\w\u0430-\u044f]+/.test(obj[Object.keys(obj)[0]]))
 })
+
+test('faker random seed', t => {
+    const data = fixtures.fakerSeed
+    const jm = jaymock()
+    jm.setFakerSeed(1)
+    const obj = jm.populate(data)
+    t.deepEqual(obj[Object.keys(obj)[0]], 41702)
+})
