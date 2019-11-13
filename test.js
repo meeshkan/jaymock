@@ -149,3 +149,12 @@ test('{custom function}|{desired array length}', t => {
     t.true(Array.isArray(actualArray) && actualArray.length === parseInt(data.color.split('|')[1]))
     actualArray.forEach(value => t.true(hexColorRegex.test(value)))
 })
+
+test('faker.fake() generation function', t => {
+    const data = fixtures.fakerFake
+    const expectedKeys = Object.keys(data)
+    const obj = jaymock().populate(data)
+    const actualKeys = Object.keys(obj)
+    t.deepEqual(expectedKeys, actualKeys)
+    t.true(obj.fullName.split(' ').length > 1)
+})
