@@ -169,3 +169,20 @@ JayMock.prototype.populate = function(template) {
     this.template = template
     return populateObject(this.template, this.functions)
 }
+
+/**
+ * Adds custom data generation function(s).
+ *
+ * @method jaymock.extend
+ * @param {String|Object} funcName
+ * @param {?String} funcBody
+ * @api public
+ */
+
+JayMock.prototype.extend = function(funcName, funcBody = null) {
+    if (isObject(funcName) && funcBody !== null) {
+        this.functions = funcName
+    } else {
+        this.functions[funcName] = funcBody
+    }
+}
