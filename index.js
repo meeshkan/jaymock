@@ -155,3 +155,17 @@ function JayMock() {
     this.template = {}
     this.functions = {}
 }
+
+/**
+ * Populates the template object with fake data.
+ *
+ * @method jaymock.populate
+ * @param {Object} template
+ * @returns {Object} Populated Object
+ * @api public
+ */
+
+JayMock.prototype.populate = function(template) {
+    this.template = template
+    return populateObject(this.template, this.functions)
+}
