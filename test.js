@@ -111,3 +111,15 @@ test('repeat nested object', t => {
         }
     })
 })
+
+const ipAddressRegex = /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/
+test('{faker function}|{desired array length}', t => {
+    const data = fixtures.arrayFunction
+    const expectedKeys = Object.keys(data)
+    const obj = jaymock().populate(data)
+    const actualKeys = Object.keys(obj)
+    t.deepEqual(expectedKeys, actualKeys)
+    const actualArray = obj['ipAddress']
+    t.true(Array.isArray(actualArray) && actualArray.length === parseInt(data.ipAddress.split('|')[1]))
+    actualArray.forEach(value => t.true(ipAddressRegex.test(value)))
+})
