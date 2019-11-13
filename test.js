@@ -67,3 +67,14 @@ test('flat object', t => {
         t.true(obj[key] != undefined && obj[key].length > 0)
     })
 })
+
+test('nested object', t => {
+    const data = fixtures.flat
+    const expectedKeys = Object.keys(data)
+    const obj = jaymock().populate(data)
+    const actualKeys = Object.keys(data)
+    t.deepEqual(expectedKeys, actualKeys)
+    actualKeys.forEach(key => {
+        t.true(obj[key] != undefined && (obj[key].length > 0 || typeof obj[key] === 'object'))
+    })
+})
