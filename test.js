@@ -158,3 +158,11 @@ test('faker.fake() generation function', t => {
     t.deepEqual(expectedKeys, actualKeys)
     t.true(obj.fullName.split(' ').length > 1)
 })
+
+test('invalid function', t => {
+    const data = fixtures.invalidFakerFunction
+    const error = t.throws(() => {
+        jaymock().populate(data)
+    }, Error);
+	t.is(error.message, `Faker function ${JSON.stringify(data.invalid)} does not exist`);
+})
