@@ -64,3 +64,20 @@ const fakeData = jm.populate(data)
   ]
 */
 ```
+
+### Mock API using [express](https://github.com/expressjs/express)
+
+```js
+const jaymock = require('jaymock')
+const express = require('express')
+
+app = express()
+app.use(express.json())
+
+const jm = jaymock()
+jm.extend('chance', new require('chance')())
+
+app.post('/', (req, res) => res.json(jm.populate(req.body)))
+
+app.listen(3000)
+```
