@@ -31,3 +31,22 @@ const generateFakerData = (topic, subtopic) => {
     }
     return faker[topic][subtopic]()
 }
+
+/**
+ * Parses function payload to the appropriate topic and subtopic.
+ *
+ * @param {String} payload
+ * @returns {Array} [Topic, Subtopic]
+ * @api private
+ */
+
+const parsePayload = payload => {
+    let topic, subtopic
+    if (/^fake/.test(payload)) {
+        topic = 'fake'
+        subtopic = payload.split(topic)[1]
+    } else {
+        [topic, subtopic] = payload.split(/\.(.+)/)
+    }
+    return [topic, subtopic]
+}
