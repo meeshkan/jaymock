@@ -198,3 +198,15 @@ JayMock.prototype.extend = function(funcName, funcBody = null) {
 JayMock.prototype.setFakerLocale = function(locale) {
     faker.locale = locale
 }
+
+/**
+ * Sets `Faker.js`'s randomness seed.
+ *
+ * @method jaymock.setFakerSeed
+ * @param {Number} seed
+ * @api public
+ */
+
+JayMock.prototype.setFakerSeed = function(seed) {
+    faker.seed(seed)
+}
