@@ -2,8 +2,6 @@
 
 > Minimal fake JSON test data generator.
 
-[![Build Status](https://travis-ci.com/unmock/jaymock.svg?branch=master)](https://travis-ci.com/unmock/jaymock) [![Install Size](https://packagephobia.now.sh/badge?p=@unmock/jaymock)](https://packagephobia.now.sh/result?p=@unmock/jaymock)
-
 ## Install
 
 ```
