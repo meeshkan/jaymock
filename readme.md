@@ -7,7 +7,7 @@
 ## Install
 
 ```
-~ ❯❯❯ npm install jaymock
+~ ❯❯❯ npm install @unmock/jaymock
 ```
 
 ## Usage
