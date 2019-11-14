@@ -136,6 +136,10 @@ Sets [`Faker.js`'s randomness seed](https://github.com/Marak/Faker.js/#setting-a
 
 Type: `number`
 
+## Related
+
+- [micro-jaymock](https://github.com/unmock/micro-jaymock) - Tiny API mocking microservice, which uses jaymock
+
 ## Contributing
 
 Thanks for wanting to contribute! We will soon have a contributing page
