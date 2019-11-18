@@ -148,6 +148,10 @@ and ask for more features and support.
 
 Please note that this project is governed by the [Unmock Community Code of Conduct](https://github.com/unmock/code-of-conduct). By participating in this project, you agree to abide by its terms.
 
+## Credits
+
+- [`Faker.js`](https://github.com/Marak/Faker.js) is used as `jaymock`'s core fake data generator.
+
 ## License
 
 MIT © [Meeshkan](http://meeshkan.com/)
