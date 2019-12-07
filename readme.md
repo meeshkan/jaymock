@@ -110,13 +110,13 @@ Type: `function`
 
 ### .extend(functions)
 
-Adds custom data generation functions that can be called in the `.populate` `template` using the value of each object ke.
+Adds custom data generation functions that can be called in the `.populate` `template` using the value of each object key.
 
 #### functions
 
 Type: `object`
 
-Each object `key` should be the relevant function's name and `value` the function's body (e.g. `{ 'chance', new require('chance')() }`).
+Each object `key` should be the relevant function's name and `value` the function's body (e.g. `{ 'chance': new require('chance')() }`).
 
 ### .setFakerLocale(locale)
 
