@@ -26,10 +26,10 @@ const isObjectKey = (key, object) => Object.keys(object).includes(key)
  */
 
 const generateFakerData = (topic, subtopic) => {
-    if (topic === 'fake') {
-        return faker[topic](subtopic.slice(1, -1))
-    }
-    return faker[topic][subtopic]()
+	if (topic === 'fake') {
+		return faker[topic](subtopic.slice(1, -1))
+	}
+	return faker[topic][subtopic]()
 }
 
 /**
@@ -41,15 +41,15 @@ const generateFakerData = (topic, subtopic) => {
  */
 
 const parsePayload = payload => {
-    let topic, subtopic
-    payload = String(payload)
-    if (/^fake/.test(payload)) {
-        topic = 'fake'
-        subtopic = payload.split(topic)[1]
-    } else {
-        [topic, subtopic] = payload.split(/\.(.+)/)
-    }
-    return [topic, subtopic]
+	let topic, subtopic
+	payload = String(payload)
+	if (/^fake/.test(payload)) {
+		topic = 'fake'
+		subtopic = payload.split(topic)[1]
+	} else {
+		[topic, subtopic] = payload.split(/\.(.+)/)
+	}
+	return [topic, subtopic]
 }
 
 /**
@@ -63,36 +63,36 @@ const parsePayload = payload => {
  */
 
 const fake = (payload, customFunctions) => {
-    let numOfValues = null
-    let [topic, subtopic] = parsePayload(payload)
-    if (subtopic && subtopic.includes('|')) {
-        [subtopic, numOfValues] = subtopic.split('|')
-        numOfValues = parseInt(numOfValues)
-    } else if (!subtopic && topic && topic.includes('|')) {
-        [topic, numOfValues] = topic.split('|')
-        numOfValues = parseInt(numOfValues)
-    }
-    if (isObjectKey(topic, customFunctions)) {
-        let func = customFunctions[topic]
-        if (numOfValues) {
-            if (func[subtopic] !== undefined) {
-                return generateArrayOfLength(numOfValues).map(_ => func[subtopic]())
-            }
-            return generateArrayOfLength(numOfValues).map(_ => func())
-        }
-        if (func[subtopic]) {
-            return func[subtopic]()
-        }
-        return func()
-    }
-    if (!subtopic || ((faker[topic] === undefined || faker[topic][subtopic] === undefined) && !subtopic.includes('.') && !subtopic.includes('|'))) {
-        subtopic = subtopic ? '.' + subtopic : ``
-        throw new Error(`Function ${JSON.stringify(topic + subtopic)} does not exist`)
-    }
-    if (numOfValues) {
-        return generateArrayOfLength(numOfValues).map(_ => generateFakerData(topic, subtopic))
-    }
-    return generateFakerData(topic, subtopic)
+	let numOfValues = null
+	let [topic, subtopic] = parsePayload(payload)
+	if (subtopic && subtopic.includes('|')) {
+		[subtopic, numOfValues] = subtopic.split('|')
+		numOfValues = parseInt(numOfValues)
+	} else if (!subtopic && topic && topic.includes('|')) {
+		[topic, numOfValues] = topic.split('|')
+		numOfValues = parseInt(numOfValues)
+	}
+	if (isObjectKey(topic, customFunctions)) {
+		let func = customFunctions[topic]
+		if (numOfValues) {
+			if (func[subtopic] !== undefined) {
+				return generateArrayOfLength(numOfValues).map(_ => func[subtopic]())
+			}
+			return generateArrayOfLength(numOfValues).map(_ => func())
+		}
+		if (func[subtopic]) {
+			return func[subtopic]()
+		}
+		return func()
+	}
+	if (!subtopic || ((faker[topic] === undefined || faker[topic][subtopic] === undefined) && !subtopic.includes('.') && !subtopic.includes('|'))) {
+		subtopic = subtopic ? '.' + subtopic : ``
+		throw new Error(`Function ${JSON.stringify(topic + subtopic)} does not exist`)
+	}
+	if (numOfValues) {
+		return generateArrayOfLength(numOfValues).map(_ => generateFakerData(topic, subtopic))
+	}
+	return generateFakerData(topic, subtopic)
 }
 
 /**
@@ -106,36 +106,36 @@ const fake = (payload, customFunctions) => {
  */
 
 const populateObject = (object, funcObject, firstRun = true) => {
-    object = cloneDeep(object)
-    const repeatParentObject = firstRun && isObjectKey('_repeat', object) && object['_repeat'] !== undefined
-    for (let [key, value] of Object.entries(object)) {
-        if (repeatParentObject) {
-            value = object
-        }
-        if (isObject(value)) {
-            if (value['_repeat'] !== undefined) {
-                const repeatCount = value['_repeat']
-                delete value['_repeat']
-                if (repeatParentObject) {
-                    const temp = object
-                    object = []
-                    for (let j = 0; j < repeatCount; j++) {
-                        object.push(populateObject(temp, funcObject, false))
-                    }
-                    return object
-                }
-                object[key] = []
-                for (let j = 0; j < repeatCount; j++) {
-                    object[key].push(populateObject(value, funcObject, false))
-                }
-            } else {
-                object[key] = populateObject(value, funcObject, false)
-            }
-        } else {
-            object[key] = fake(value, funcObject)
-        }
-    }
-    return object
+	object = cloneDeep(object)
+	const repeatParentObject = firstRun && isObjectKey('_repeat', object) && object['_repeat'] !== undefined
+	for (let [key, value] of Object.entries(object)) {
+		if (repeatParentObject) {
+			value = object
+		}
+		if (isObject(value)) {
+			if (value['_repeat'] !== undefined) {
+				const repeatCount = value['_repeat']
+				delete value['_repeat']
+				if (repeatParentObject) {
+					const temp = object
+					object = []
+					for (let j = 0; j < repeatCount; j++) {
+						object.push(populateObject(temp, funcObject, false))
+					}
+					return object
+				}
+				object[key] = []
+				for (let j = 0; j < repeatCount; j++) {
+					object[key].push(populateObject(value, funcObject, false))
+				}
+			} else {
+				object[key] = populateObject(value, funcObject, false)
+			}
+		} else {
+			object[key] = fake(value, funcObject)
+		}
+	}
+	return object
 }
 
 const jaymock = () => new JayMock()
@@ -154,8 +154,8 @@ module.exports = jaymock
  */
 
 function JayMock() {
-    this.template = {}
-    this.functions = {}
+	this.template = {}
+	this.functions = {}
 }
 
 /**
@@ -168,8 +168,8 @@ function JayMock() {
  */
 
 JayMock.prototype.populate = function(template) {
-    this.template = template
-    return populateObject(this.template, this.functions)
+	this.template = template
+	return populateObject(this.template, this.functions)
 }
 
 /**
@@ -182,11 +182,11 @@ JayMock.prototype.populate = function(template) {
  */
 
 JayMock.prototype.extend = function(funcName, funcBody) {
-    if (isObject(funcName) && !funcBody) {
-        this.functions = funcName
-    } else {
-        this.functions[funcName] = funcBody
-    }
+	if (isObject(funcName) && !funcBody) {
+		this.functions = funcName
+	} else {
+		this.functions[funcName] = funcBody
+	}
 }
 
 /**
@@ -198,7 +198,7 @@ JayMock.prototype.extend = function(funcName, funcBody) {
  */
 
 JayMock.prototype.setFakerLocale = function(locale) {
-    faker.locale = locale
+	faker.locale = locale
 }
 
 /**
@@ -210,5 +210,5 @@ JayMock.prototype.setFakerLocale = function(locale) {
  */
 
 JayMock.prototype.setFakerSeed = function(seed) {
-    faker.seed(seed)
+	faker.seed(seed)
 }
