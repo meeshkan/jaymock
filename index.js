@@ -13,7 +13,7 @@ const cloneDeep = require('lodash.clonedeep')
 
 const isType = (value, type) => typeof value === type
 const isObject = value => isType(value, 'object')
-const generateArrayOfLength = length => [...Array(length)]
+const generateArrayOfLength = length => [...new Array(length)]
 const isObjectKey = (key, object) => Object.keys(object).includes(key)
 
 /**
