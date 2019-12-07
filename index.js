@@ -107,15 +107,15 @@ const fake = (payload, customFunctions) => {
 
 const populateObject = (object, funcObject, firstRun = true) => {
 	object = cloneDeep(object)
-	const repeatParentObject = firstRun && isObjectKey('_repeat', object) && object['_repeat'] !== undefined
+	const repeatParentObject = firstRun && isObjectKey('_repeat', object) && object._repeat !== undefined
 	for (let [key, value] of Object.entries(object)) {
 		if (repeatParentObject) {
 			value = object
 		}
 		if (isObject(value)) {
-			if (value['_repeat'] !== undefined) {
-				const repeatCount = value['_repeat']
-				delete value['_repeat']
+			if (value._repeat !== undefined) {
+				const repeatCount = value._repeat
+				delete value._repeat
 				if (repeatParentObject) {
 					const temp = object
 					object = []
