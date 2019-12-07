@@ -120,7 +120,7 @@ test('{faker function}|{desired array length}', t => {
 	const actualKeys = Object.keys(obj)
 	t.deepEqual(expectedKeys, actualKeys)
 	const actualArray = obj.ipAddress
-	t.true(Array.isArray(actualArray) && actualArray.length === parseInt(data.ipAddress.split('|')[1]))
+	t.true(Array.isArray(actualArray) && actualArray.length === parseInt(data.ipAddress.split('|')[1], 10))
 	actualArray.forEach(value => t.regex(value, ipAddressRegex))
 })
 
@@ -146,7 +146,7 @@ test('{custom function}|{desired array length}', t => {
 	const actualKeys = Object.keys(obj)
 	t.deepEqual(expectedKeys, actualKeys)
 	const actualArray = obj.color
-	t.true(Array.isArray(actualArray) && actualArray.length === parseInt(data.color.split('|')[1]))
+	t.true(Array.isArray(actualArray) && actualArray.length === parseInt(data.color.split('|')[1], 10))
 	actualArray.forEach(value => t.regex(value, hexColorRegex))
 })
 
