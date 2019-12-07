@@ -4,11 +4,17 @@
   "description": "Minimal fake JSON test data generator",
   "main": "index.js",
   "scripts": {
-    "test": "ava"
+    "test": "xo && ava"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/unmock/jaymock.git"
+  },
+  "xo": {
+    "semicolon": false,
+    "rules": {
+      "max-depth": ["error", 5]
+    }
   },
   "author": "unmock",
   "license": "MIT",
@@ -21,7 +27,8 @@
     "lodash.clonedeep": "^4.5.0"
   },
   "devDependencies": {
-    "ava": "^2.4.0"
+    "ava": "^2.4.0",
+    "xo": "^0.25.3"
   },
   "keywords": [
     "mock",
