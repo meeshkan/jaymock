@@ -98,7 +98,7 @@ To use the [`faker.fake()`](https://github.com/marak/Faker.js/#fakerfake) method
 
 ### .extend(name, body)
 
-Adds a custom data generation function that can be called in the `.populate` `template` using the value of `name`.
+Adds a custom data generation function that can be called in the [`.populate`](#populatetemplate) `template` using the value of `name`.
 
 #### name
 
@@ -110,7 +110,7 @@ Type: `function`
 
 ### .extend(functions)
 
-Adds custom data generation functions that can be called in the `.populate` `template` using the value of each object key.
+Adds custom data generation functions that can be called in the [`.populate`](#populatetemplate) `template` using the value of each object key.
 
 #### functions
 
