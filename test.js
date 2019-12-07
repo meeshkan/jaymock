@@ -121,7 +121,7 @@ test('{faker function}|{desired array length}', t => {
 	t.deepEqual(expectedKeys, actualKeys)
 	const actualArray = obj.ipAddress
 	t.true(Array.isArray(actualArray) && actualArray.length === parseInt(data.ipAddress.split('|')[1]))
-	actualArray.forEach(value => t.true(ipAddressRegex.test(value)))
+	actualArray.forEach(value => t.regex(value, ipAddressRegex))
 })
 
 const randomHexColor = () => '#' + ('000000' + Math.floor(Math.random()*16777215).toString(16)).slice(-6)
@@ -134,7 +134,7 @@ test('custom data generation function', t => {
 	const obj = jm.populate(data)
 	const actualKeys = Object.keys(obj)
 	t.deepEqual(expectedKeys, actualKeys)
-	t.true(hexColorRegex.test(obj.color))
+	t.regex(obj.color, hexColorRegex)
 })
 
 test('{custom function}|{desired array length}', t => {
@@ -147,7 +147,7 @@ test('{custom function}|{desired array length}', t => {
 	t.deepEqual(expectedKeys, actualKeys)
 	const actualArray = obj.color
 	t.true(Array.isArray(actualArray) && actualArray.length === parseInt(data.color.split('|')[1]))
-	actualArray.forEach(value => t.true(hexColorRegex.test(value)))
+	actualArray.forEach(value => t.regex(value, hexColorRegex))
 })
 
 test('faker.fake() generation function', t => {
@@ -172,7 +172,7 @@ test('faker locale', t => {
 	const jm = jaymock()
 	jm.setFakerLocale('ru')
 	const obj = jm.populate(data)
-	t.true(/[\w\u0430-\u044f]+/.test(obj[Object.keys(obj)[0]]))
+	t.regex(obj[Object.keys(obj)[0]], /[\w\u0430-\u044f]+/)
 })
 
 test('faker random seed', t => {
