@@ -181,8 +181,8 @@ JayMock.prototype.populate = function(template) {
  * @api public
  */
 
-JayMock.prototype.extend = function(funcName, funcBody = null) {
-    if (isObject(funcName) && funcBody !== null) {
+JayMock.prototype.extend = function(funcName, funcBody) {
+    if (isObject(funcName) && !funcBody) {
         this.functions = funcName
     } else {
         this.functions[funcName] = funcBody
