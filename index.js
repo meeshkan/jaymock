@@ -46,8 +46,8 @@ const parsePayload = payload => {
 	let subtopic
 	payload = String(payload)
 	if (payload.startsWith('fake')) {
-		topic = 'fake'
-		subtopic = payload.split(topic)[1]
+		topic = 'fake';
+		[, subtopic] = payload.split(topic)
 	} else {
 		[topic, subtopic] = payload.split(/\.(.+)/)
 	}
