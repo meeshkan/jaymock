@@ -29,6 +29,7 @@ const generateFakerData = (topic, subtopic) => {
 	if (topic === 'fake') {
 		return faker[topic](subtopic.slice(1, -1))
 	}
+
 	return faker[topic][subtopic]()
 }
 
@@ -41,7 +42,8 @@ const generateFakerData = (topic, subtopic) => {
  */
 
 const parsePayload = payload => {
-	let topic, subtopic
+	let topic
+	let subtopic
 	payload = String(payload)
 	if (payload.startsWith('fake')) {
 		topic = 'fake'
@@ -49,11 +51,12 @@ const parsePayload = payload => {
 	} else {
 		[topic, subtopic] = payload.split(/\.(.+)/)
 	}
+
 	return [topic, subtopic]
 }
 
 /**
- * Returns the appropriate fake data 
+ * Returns the appropriate fake data
  * (generated using either Faker.js or custom functions).
  *
  * @param {String} payload
@@ -72,26 +75,33 @@ const fake = (payload, customFunctions) => {
 		[topic, numOfValues] = topic.split('|')
 		numOfValues = parseInt(numOfValues)
 	}
+
 	if (isObjectKey(topic, customFunctions)) {
-		let func = customFunctions[topic]
+		const func = customFunctions[topic]
 		if (numOfValues) {
 			if (func[subtopic] !== undefined) {
 				return generateArrayOfLength(numOfValues).map(_ => func[subtopic]())
 			}
+
 			return generateArrayOfLength(numOfValues).map(_ => func())
 		}
+
 		if (func[subtopic]) {
 			return func[subtopic]()
 		}
+
 		return func()
 	}
+
 	if (!subtopic || ((faker[topic] === undefined || faker[topic][subtopic] === undefined) && !subtopic.includes('.') && !subtopic.includes('|'))) {
-		subtopic = subtopic ? '.' + subtopic : ``
+		subtopic = subtopic ? '.' + subtopic : ''
 		throw new Error(`Function ${JSON.stringify(topic + subtopic)} does not exist`)
 	}
+
 	if (numOfValues) {
 		return generateArrayOfLength(numOfValues).map(_ => generateFakerData(topic, subtopic))
 	}
+
 	return generateFakerData(topic, subtopic)
 }
 
@@ -112,8 +122,9 @@ const populateObject = (object, funcObject, firstRun = true) => {
 		if (repeatParentObject) {
 			value = object
 		}
+
 		if (isObject(value)) {
-			if (value._repeat !== undefined) {
+			if (value._repeat) {
 				const repeatCount = value._repeat
 				delete value._repeat
 				if (repeatParentObject) {
@@ -122,8 +133,10 @@ const populateObject = (object, funcObject, firstRun = true) => {
 					for (let j = 0; j < repeatCount; j++) {
 						object.push(populateObject(temp, funcObject, false))
 					}
+
 					return object
 				}
+
 				object[key] = []
 				for (let j = 0; j < repeatCount; j++) {
 					object[key].push(populateObject(value, funcObject, false))
@@ -135,6 +148,7 @@ const populateObject = (object, funcObject, firstRun = true) => {
 			object[key] = fake(value, funcObject)
 		}
 	}
+
 	return object
 }
 
@@ -167,7 +181,7 @@ function JayMock() {
  * @api public
  */
 
-JayMock.prototype.populate = function(template) {
+JayMock.prototype.populate = function (template) {
 	this.template = template
 	return populateObject(this.template, this.functions)
 }
@@ -181,7 +195,7 @@ JayMock.prototype.populate = function(template) {
  * @api public
  */
 
-JayMock.prototype.extend = function(funcName, funcBody) {
+JayMock.prototype.extend = function (funcName, funcBody) {
 	if (isObject(funcName) && !funcBody) {
 		this.functions = funcName
 	} else {
@@ -197,7 +211,7 @@ JayMock.prototype.extend = function(funcName, funcBody) {
  * @api public
  */
 
-JayMock.prototype.setFakerLocale = function(locale) {
+JayMock.prototype.setFakerLocale = function (locale) {
 	faker.locale = locale
 }
 
@@ -209,6 +223,6 @@ JayMock.prototype.setFakerLocale = function(locale) {
  * @api public
  */
 
-JayMock.prototype.setFakerSeed = function(seed) {
+JayMock.prototype.setFakerSeed = function (seed) {
 	faker.seed(seed)
 }

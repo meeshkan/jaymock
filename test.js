@@ -1,5 +1,5 @@
 import test from 'ava'
-const jaymock = require('./index')
+const jaymock = require('.')
 
 const fixtures = {
 	flat: {
@@ -16,7 +16,7 @@ const fixtures = {
 			workAddress: {
 				streetAddress: 'address.streetAddress',
 				city: 'address.city',
-				zipCode: 'address.zipCode'            
+				zipCode: 'address.zipCode'
 			}
 		}
 	},
@@ -64,7 +64,7 @@ test('flat object', t => {
 	const actualKeys = Object.keys(obj)
 	t.deepEqual(expectedKeys, actualKeys)
 	actualKeys.forEach(key => {
-		t.true(obj[key] != undefined && obj[key].length > 0)
+		t.true(obj[key] !== undefined && obj[key].length > 0)
 	})
 })
 
@@ -75,19 +75,19 @@ test('nested object', t => {
 	const actualKeys = Object.keys(data)
 	t.deepEqual(expectedKeys, actualKeys)
 	actualKeys.forEach(key => {
-		t.true(obj[key] != undefined && (obj[key].length > 0 || typeof obj[key] === 'object'))
+		t.true(obj[key] !== undefined && (obj[key].length > 0 || typeof obj[key] === 'object'))
 	})
 })
 
 test('repeat mother object', t => {
 	const data = fixtures.repeat
-	const expectedKeys = Object.keys(data).filter(x => x != '_repeat')
+	const expectedKeys = Object.keys(data).filter(x => x !== '_repeat')
 	const objects = jaymock().populate(data)
 	objects.forEach(obj => {
 		const actualKeys = Object.keys(obj)
 		t.deepEqual(expectedKeys, actualKeys)
 		actualKeys.forEach(key => {
-			t.true(obj[key] != undefined && obj[key].length > 0)
+			t.true(obj[key] !== undefined && obj[key].length > 0)
 		})
 	})
 })
@@ -97,22 +97,22 @@ test('repeat nested object', t => {
 	const obj = jaymock().populate(data)
 	Object.keys(obj).forEach(key => {
 		const value = obj[key]
-		t.true(value != undefined && value.length > 0)
+		t.true(value !== undefined && value.length > 0)
 		if (key === 'ipAddress') {
 			t.true(Array.isArray(value))
 			value.forEach(innerObj => {
-				const expectedKeys = Object.keys(data.ipAddress).filter(x => x != '_repeat')
+				const expectedKeys = Object.keys(data.ipAddress).filter(x => x !== '_repeat')
 				const actualKeys = Object.keys(innerObj)
 				t.deepEqual(expectedKeys, actualKeys)
 				actualKeys.forEach(innerKey => {
-					t.true(innerObj[innerKey] != undefined && innerObj[innerKey].length > 0)
+					t.true(innerObj[innerKey] !== undefined && innerObj[innerKey].length > 0)
 				})
 			})
 		}
 	})
 })
 
-const ipAddressRegex = /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/
+const ipAddressRegex = /^(?:\d{1,3}\.){3}\d{1,3}$/
 test('{faker function}|{desired array length}', t => {
 	const data = fixtures.arrayFunction
 	const expectedKeys = Object.keys(data)
@@ -124,7 +124,7 @@ test('{faker function}|{desired array length}', t => {
 	actualArray.forEach(value => t.regex(value, ipAddressRegex))
 })
 
-const randomHexColor = () => '#' + ('000000' + Math.floor(Math.random()*16777215).toString(16)).slice(-6)
+const randomHexColor = () => '#' + ('000000' + Math.floor(Math.random() * 16777215).toString(16)).slice(-6)
 const hexColorRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
 test('custom data generation function', t => {
 	const data = fixtures.customFunction
@@ -162,9 +162,9 @@ test('faker.fake() generation function', t => {
 test('invalid function', t => {
 	const data = fixtures.invalidFakerFunction
 	const error = t.throws(() => {
-	    jaymock().populate(data)
-	}, Error);
-	t.is(error.message, `Function ${JSON.stringify(data.invalid)} does not exist`);
+		jaymock().populate(data)
+	}, Error)
+	t.is(error.message, `Function ${JSON.stringify(data.invalid)} does not exist`)
 })
 
 test('faker locale', t => {
@@ -172,7 +172,7 @@ test('faker locale', t => {
 	const jm = jaymock()
 	jm.setFakerLocale('ru')
 	const obj = jm.populate(data)
-	t.regex(obj[Object.keys(obj)[0]], /[\w\u0430-\u044f]+/)
+	t.regex(obj[Object.keys(obj)[0]], /[\w\u0430-\u044F]+/)
 })
 
 test('faker random seed', t => {
@@ -180,5 +180,5 @@ test('faker random seed', t => {
 	const jm = jaymock()
 	jm.setFakerSeed(1)
 	const obj = jm.populate(data)
-	t.deepEqual(obj[Object.keys(obj)[0]], 41702)
+	t.is(obj[Object.keys(obj)[0]], 41702)
 })
