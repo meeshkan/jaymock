@@ -70,10 +70,10 @@ const fake = (payload, customFunctions) => {
 	let [topic, subtopic] = parsePayload(payload)
 	if (subtopic && subtopic.includes('|')) {
 		[subtopic, numOfValues] = subtopic.split('|')
-		numOfValues = parseInt(numOfValues)
+		numOfValues = parseInt(numOfValues, 10)
 	} else if (!subtopic && topic && topic.includes('|')) {
 		[topic, numOfValues] = topic.split('|')
-		numOfValues = parseInt(numOfValues)
+		numOfValues = parseInt(numOfValues, 10)
 	}
 
 	if (isObjectKey(topic, customFunctions)) {
