@@ -84,8 +84,9 @@ const fake = (payload, customFunctions) => {
         }
         return func()
     }
-    if ((faker[topic] === undefined || faker[topic][subtopic] === undefined) && !subtopic.includes('.') && !subtopic.includes('|')) {
-        throw new Error(`Faker function ${JSON.stringify(topic + '.' + subtopic)} does not exist`)
+    if (!subtopic || ((faker[topic] === undefined || faker[topic][subtopic] === undefined) && !subtopic.includes('.') && !subtopic.includes('|'))) {
+        subtopic = subtopic ? '.' + subtopic : ``
+        throw new Error(`Function ${JSON.stringify(topic + subtopic)} does not exist`)
     }
     if (numOfValues) {
         return generateArrayOfLength(numOfValues).map(_ => generateFakerData(topic, subtopic))

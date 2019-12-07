@@ -164,7 +164,7 @@ test('invalid function', t => {
     const error = t.throws(() => {
         jaymock().populate(data)
     }, Error);
-	t.is(error.message, `Faker function ${JSON.stringify(data.invalid)} does not exist`);
+	t.is(error.message, `Function ${JSON.stringify(data.invalid)} does not exist`);
 })
 
 test('faker locale', t => {
