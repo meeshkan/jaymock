@@ -119,7 +119,7 @@ test('{faker function}|{desired array length}', t => {
 	const obj = jaymock().populate(data)
 	const actualKeys = Object.keys(obj)
 	t.deepEqual(expectedKeys, actualKeys)
-	const actualArray = obj['ipAddress']
+	const actualArray = obj.ipAddress
 	t.true(Array.isArray(actualArray) && actualArray.length === parseInt(data.ipAddress.split('|')[1]))
 	actualArray.forEach(value => t.true(ipAddressRegex.test(value)))
 })
@@ -145,7 +145,7 @@ test('{custom function}|{desired array length}', t => {
 	const obj = jm.populate(data)
 	const actualKeys = Object.keys(obj)
 	t.deepEqual(expectedKeys, actualKeys)
-	const actualArray = obj['color']
+	const actualArray = obj.color
 	t.true(Array.isArray(actualArray) && actualArray.length === parseInt(data.color.split('|')[1]))
 	actualArray.forEach(value => t.true(hexColorRegex.test(value)))
 })
