@@ -42,6 +42,7 @@ const generateFakerData = (topic, subtopic) => {
 
 const parsePayload = payload => {
     let topic, subtopic
+    payload = String(payload)
     if (/^fake/.test(payload)) {
         topic = 'fake'
         subtopic = payload.split(topic)[1]
