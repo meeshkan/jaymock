@@ -1,5 +1,5 @@
 import test from 'ava'
-const jaymock = require('.')
+import jaymock from '.'
 
 const fixtures = {
 	flat: {
