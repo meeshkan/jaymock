@@ -40,6 +40,9 @@ const fixtures = {
 	customFunction: {
 		color: 'hexColor'
 	},
+	customFunctionAsObject: {
+		unicorn: 'foo'
+	},
 	customArrayFunction: {
 		color: 'hexColor|10'
 	},
@@ -135,6 +138,14 @@ test('custom data generation function', t => {
 	const actualKeys = Object.keys(obj)
 	t.deepEqual(expectedKeys, actualKeys)
 	t.regex(obj.color, hexColorRegex)
+})
+
+test('custom data generation function passed as object', t => {
+	const data = fixtures.customFunctionAsObject
+	const jm = jaymock()
+	jm.extend({foo: () => 'bar'})
+	const obj = jm.populate(data)
+	t.is(obj.unicorn, 'bar')
 })
 
 test('{custom function}|{desired array length}', t => {
