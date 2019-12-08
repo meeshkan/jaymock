@@ -32,7 +32,7 @@ const data = {
 const jm = jaymock()
 
 const randExp = require('randexp').randexp
-// Add custom functions using `jaymock.extend`
+// Add custom functions using `.extend()`
 jm.extend({
   ssn: () => randExp(/^\d{3}-\d{2}-\d{4}$/)
 })
