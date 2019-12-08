@@ -3,7 +3,6 @@ import jaymock = require('.');
 
 const jm = jaymock();
 
-expectType<jaymock.Instance & jaymock.Method>(jm);
 expectType<jaymock.Populated>(jm.populate({
     name: 'fake({{name.lastName}}, {{name.firstName}} {{name.suffix}})',
     ssn: 'chance.ssn',
