@@ -60,6 +60,10 @@ const fixtures = {
 	}
 }
 
+const ipAddressRegex = /^(?:\d{1,3}\.){3}\d{1,3}$/
+const hexColorRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
+const randomHexColor = () => '#' + ('000000' + Math.floor(Math.random() * 16777215).toString(16)).slice(-6)
+
 test('flat object', t => {
 	const data = fixtures.flat
 	const expectedKeys = Object.keys(data)
@@ -115,7 +119,6 @@ test('repeat nested object', t => {
 	})
 })
 
-const ipAddressRegex = /^(?:\d{1,3}\.){3}\d{1,3}$/
 test('{faker function}|{desired array length}', t => {
 	const data = fixtures.arrayFunction
 	const expectedKeys = Object.keys(data)
@@ -127,8 +130,6 @@ test('{faker function}|{desired array length}', t => {
 	actualArray.forEach(value => t.regex(value, ipAddressRegex))
 })
 
-const randomHexColor = () => '#' + ('000000' + Math.floor(Math.random() * 16777215).toString(16)).slice(-6)
-const hexColorRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
 test('custom data generation function', t => {
 	const data = fixtures.customFunction
 	const expectedKeys = Object.keys(data)
