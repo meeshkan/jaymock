@@ -17,6 +17,8 @@ jobs:
       - checkout
       - run: npm ci
       - run: npm run coverage
+      - run: npm run coverage:send
+      - run: npm run coverage:check
 
 workflows:
   version: 2
