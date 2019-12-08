@@ -4,7 +4,10 @@
   "description": "Minimal fake JSON test data generator",
   "main": "index.js",
   "scripts": {
-    "test": "xo && ava && tsd"
+    "test": "xo && ava && tsd",
+    "coverage": "nyc npm test",
+    "coverage:upload": "nyc report --reporter=lcov && codecov",
+    "coverage:check": "nyc report && nyc check-coverage --lines 90 --functions 90 --branches 85"
   },
   "files": [
     "index.js",
@@ -35,6 +38,8 @@
   },
   "devDependencies": {
     "ava": "^2.4.0",
+    "codecov": "^3.6.1",
+    "nyc": "^14.1.1",
     "tsd": "^0.11.0",
     "xo": "^0.25.3"
   },
