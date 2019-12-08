@@ -95,7 +95,7 @@ Returns an `object`, populated with fake data.
 
 Type: `object`
 
-Each object's value can be one of [`Faker.js`'s API methods](https://github.com/marak/Faker.js/#api-methods), in the format `'{topic}.{subtopic}'` (e.g. `'name.firstName'`) or a custom method, defined using the `.extend` function, in the format `'{function_name}'` (e.g. `'chance.ssn'` will call `chance.ssn()`).
+Each object's value can be one of [`Faker.js`'s API methods](https://github.com/marak/Faker.js/#api-methods), in the format `'{topic}.{subtopic}'` (e.g. `'name.firstName'`) or a custom method, defined using the `.extend` function, in the format `'{function_name}'` or `{function_name}.{nested_function_name}` (e.g. `'foo'` will call `foo()` and `'foo.bar'` will call `foo.bar()`).
 
 A fake value can be generated `n` times, into an array of `n` values, by including `|n` at the end of the individual object's method name (e.g. `'name.firstName|5'` will generate an array, populated with `5` fake first names). This also works with custom functions, accordingly.
 
