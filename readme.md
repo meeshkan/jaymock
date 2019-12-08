@@ -2,7 +2,7 @@
 
 > Minimal fake JSON test data generator.
 
-[![CircleCI](https://img.shields.io/circleci/build/github/unmock/jaymock?style=for-the-badge)](https://circleci.com/gh/unmock/jaymock) [![Codecov](https://img.shields.io/codecov/c/github/unmock/jaymock?style=for-the-badge)](https://codecov.io/gh/unmock/jaymock)
+[![CircleCI](https://img.shields.io/circleci/build/github/unmock/jaymock?style=for-the-badge)](https://circleci.com/gh/unmock/jaymock) [![XO](https://img.shields.io/badge/code_style-XO-5ed9c7.svg?style=for-the-badge)](https://github.com/xojs/xo) [![Codecov](https://img.shields.io/codecov/c/github/unmock/jaymock?style=for-the-badge)](https://codecov.io/gh/unmock/jaymock)
 
 ## Install
 
