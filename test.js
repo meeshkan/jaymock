@@ -83,7 +83,7 @@ test('flat object', t => {
 })
 
 test('nested object', t => {
-	const data = fixtures.flat
+	const data = fixtures.nested
 	const expectedKeys = Object.keys(data)
 	const obj = jaymock().populate(data)
 	const actualKeys = Object.keys(data)
