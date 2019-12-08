@@ -1,6 +1,4 @@
 declare namespace jaymock {
-    type ExtensionName = string | {[key: string]: Function};
-    type Functions = {[key: string]: Function};
     interface Template {
         [key: string]: string | number | Template;
     }
@@ -15,14 +13,14 @@ declare function jaymock(): {
     @param template - A [`template`](https://github.com/unmock/jaymock#template) object to populate.
     @returns An `object` populated with fake data.
     */
-    populate(template: jaymock.Template): jaymock.Populated;
+    populate(template: jaymock.Template | object): jaymock.Populated;
 
     /**
     Adds a custom data generation function that can be called in the `populate` `template` object using the value of its `name`.
     @param name - A `string` used to refer to the `body` function.
     @param body - A `function` that can be referred to in the `template` object.
     */
-    extend(name: jaymock.ExtensionName, body?: Function): void;
+    extend(name: string | {[key: string]: Function}, body?: Function): void;
 
     /**
     Sets `Faker.js`'s language locale.
