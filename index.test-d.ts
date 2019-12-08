@@ -1,8 +1,10 @@
 import {expectType} from 'tsd';
 import jaymock = require('.');
 
-expectType<{template: jaymock.Template, functions: jaymock.Functions}>(jaymock());
-expectType<jaymock.Populated>(jaymock.populate({
+const jm = jaymock();
+
+expectType<jaymock.Method>(jm);
+expectType<jaymock.Populated>(jm.populate({
     name: 'fake({{name.lastName}}, {{name.firstName}} {{name.suffix}})',
     ssn: 'chance.ssn',
     knownAddresses: {
@@ -13,7 +15,7 @@ expectType<jaymock.Populated>(jaymock.populate({
     },
     _repeat: 10
 }));
-expectType<void>(jaymock.extend('fn', () => 'unicorn'));
-expectType<void>(jaymock.extend({'fn': () => 'unicorn'}));
-expectType<void>(jaymock.setFakerLocale('fr'));
-expectType<void>(jaymock.setFakerSeed(1337));
+expectType<void>(jm.extend('fn', () => 'unicorn'));
+expectType<void>(jm.extend({'fn': () => 'unicorn'}));
+expectType<void>(jm.setFakerLocale('fr'));
+expectType<void>(jm.setFakerSeed(1337));
