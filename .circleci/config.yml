@@ -17,11 +17,6 @@ jobs:
       - checkout
       - run: npm ci
       - run: npm run coverage
-      - codecov/upload:
-          file: coverage/*.json
-      - persist_to_workspace:
-          root: ~/repo
-          paths: .
 
 workflows:
   version: 2
