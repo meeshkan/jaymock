@@ -1,4 +1,5 @@
 import test from 'ava'
+import supervillains from 'supervillains'
 import jaymock from '.'
 
 const fixtures = {
@@ -43,8 +44,14 @@ const fixtures = {
 	customFunctionAsObject: {
 		unicorn: 'foo'
 	},
+	customNestedFunction: {
+		supervillain: 'supervillains.random'
+	},
 	customArrayFunction: {
 		color: 'hexColor|10'
+	},
+	customNestedArrayFunction: {
+		supervillains: 'supervillains.random|5'
 	},
 	fakerFake: {
 		fullName: 'fake({{name.lastName}}, {{name.firstName}} {{name.suffix}})'
@@ -149,6 +156,14 @@ test('custom data generation function passed as object', t => {
 	t.is(obj.unicorn, 'bar')
 })
 
+test('custom nested, data generation function', t => {
+	const data = fixtures.customNestedFunction
+	const jm = jaymock()
+	jm.extend({supervillains})
+	const obj = jm.populate(data)
+	t.true(supervillains.all.includes(obj.supervillain))
+})
+
 test('{custom function}|{desired array length}', t => {
 	const data = fixtures.customArrayFunction
 	const expectedKeys = Object.keys(data)
@@ -160,6 +175,14 @@ test('{custom function}|{desired array length}', t => {
 	const actualArray = obj.color
 	t.true(Array.isArray(actualArray) && actualArray.length === parseInt(data.color.split('|')[1], 10))
 	actualArray.forEach(value => t.regex(value, hexColorRegex))
+})
+
+test('{custom nested function}|{desired array length}', t => {
+	const data = fixtures.customNestedArrayFunction
+	const jm = jaymock()
+	jm.extend({supervillains})
+	const obj = jm.populate(data)
+	t.true(obj.supervillains.every(element => supervillains.all.includes(element)))
 })
 
 test('faker.fake() generation function', t => {
