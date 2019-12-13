@@ -59,6 +59,9 @@ const fixtures = {
 	invalidFakerFunction: {
 		invalid: 'name.doesnt_exist'
 	},
+	invalidCustomFunction: {
+		invalid: 'doesnt_exist'
+	},
 	fakerLocale: {
 		name: 'name.firstName'
 	},
@@ -194,8 +197,16 @@ test('faker.fake() generation function', t => {
 	t.true(obj.fullName.split(' ').length > 1)
 })
 
-test('invalid function', t => {
+test('invalid faker function', t => {
 	const data = fixtures.invalidFakerFunction
+	const error = t.throws(() => {
+		jaymock().populate(data)
+	}, Error)
+	t.is(error.message, `Function ${JSON.stringify(data.invalid)} does not exist`)
+})
+
+test('invalid custom function', t => {
+	const data = fixtures.invalidCustomFunction
 	const error = t.throws(() => {
 		jaymock().populate(data)
 	}, Error)
