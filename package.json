@@ -1,6 +1,6 @@
 {
   "name": "@unmock/jaymock",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Minimal fake JSON test data generator",
   "main": "index.js",
   "scripts": {
