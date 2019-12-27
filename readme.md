@@ -144,6 +144,7 @@ Type: `number`
 ## Related
 
 - [micro-jaymock](https://github.com/unmock/micro-jaymock) - Tiny API mocking microservice, which uses jaymock
+- [jaymock-cli](https://github.com/unmock/jaymock-cli) - CLI for this module
 
 ## Contributing
 
