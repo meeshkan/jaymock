@@ -1,6 +1,6 @@
 {
-  "name": "@unmock/jaymock",
-  "version": "1.0.9",
+  "name": "@meeshkanml/jaymock",
+  "version": "1.0.10",
   "description": "Minimal fake JSON test data generator",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/unmock/jaymock.git"
+    "url": "git+https://github.com/Meeshkan/jaymock.git"
   },
   "xo": {
     "semicolon": false,
@@ -26,12 +26,12 @@
       ]
     }
   },
-  "author": "unmock",
+  "author": "Meeshkan",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/unmock/jaymock/issues"
+    "url": "https://github.com/Meeshkan/jaymock/issues"
   },
-  "homepage": "https://github.com/unmock/jaymock#readme",
+  "homepage": "https://github.com/Meeshkan/jaymock#readme",
   "dependencies": {
     "faker": "^4.1.0",
     "lodash.clonedeep": "^4.5.0"

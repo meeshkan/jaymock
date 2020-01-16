@@ -2,18 +2,18 @@
 
 > Minimal fake JSON test data generator.
 
-[![CircleCI](https://img.shields.io/circleci/build/github/unmock/jaymock?style=for-the-badge)](https://circleci.com/gh/unmock/jaymock) [![XO](https://img.shields.io/badge/code_style-XO-5ed9c7.svg?style=for-the-badge)](https://github.com/xojs/xo) [![Codecov](https://img.shields.io/codecov/c/github/unmock/jaymock?style=for-the-badge)](https://codecov.io/gh/unmock/jaymock)
+[![CircleCI](https://img.shields.io/circleci/build/github/Meeshkan/jaymock?style=for-the-badge)](https://circleci.com/gh/Meeshkan/jaymock) [![XO](https://img.shields.io/badge/code_style-XO-5ed9c7.svg?style=for-the-badge)](https://github.com/xojs/xo) [![Codecov](https://img.shields.io/codecov/c/github/Meeshkan/jaymock?style=for-the-badge)](https://codecov.io/gh/Meeshkan/jaymock)
 
 ## Install
 
 ```
-~ ❯❯❯ npm install @unmock/jaymock
+~ ❯❯❯ npm install @meeshkanml/jaymock
 ```
 
 ## Usage
 
 ```js
-const jaymock = require('@unmock/jaymock')
+const jaymock = require('@meeshkanml/jaymock')
 
 const data = {
   firstName: 'name.firstName',
@@ -71,7 +71,7 @@ const fakeData = jm.populate(data)
 ### Mock API using [express](https://github.com/expressjs/express)
 
 ```js
-const jaymock = require('@unmock/jaymock')
+const jaymock = require('@meeshkanml/jaymock')
 const express = require('express')
 
 app = express()
@@ -143,8 +143,8 @@ Type: `number`
 
 ## Related
 
-- [micro-jaymock](https://github.com/unmock/micro-jaymock) - Tiny API mocking microservice, which uses jaymock
-- [jaymock-cli](https://github.com/unmock/jaymock-cli) - CLI for this module
+- [micro-jaymock](https://github.com/Meeshkan/micro-jaymock) - Tiny API mocking microservice, which uses jaymock
+- [jaymock-cli](https://github.com/Meeshkan/jaymock-cli) - CLI for this module
 
 ## Contributing
 
@@ -152,7 +152,7 @@ Thanks for wanting to contribute! We will soon have a contributing page
 detailing how to contribute. Meanwhile, feel free to star this repository, open issues,
 and ask for more features and support.
 
-Please note that this project is governed by the [Unmock Community Code of Conduct](https://github.com/unmock/code-of-conduct). By participating in this project, you agree to abide by its terms.
+Please note that this project is governed by the [Meeshkan Community Code of Conduct](https://github.com/unmock/code-of-conduct). By participating in this project, you agree to abide by its terms.
 
 ## Credits
 

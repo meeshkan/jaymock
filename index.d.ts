@@ -10,7 +10,7 @@ declare namespace jaymock {
 declare function jaymock(): {
     /**
     Populates the template object with fake data.
-    @param template - A [`template`](https://github.com/unmock/jaymock#template) object to populate.
+    @param template - A [`template`](https://github.com/Meeshkan/jaymock#template) object to populate.
     @returns An `object` populated with fake data.
     */
     populate(template: jaymock.Template | object): jaymock.Populated;
